@@ -21,13 +21,13 @@ void DefaultScene::removeNode(const std::string& id) {
 }
 
 void DefaultScene::update() {
-	for each (const auto& n in _nodes) {
+	for (const auto& n : _nodes) {
 		n.get()->update(_gameTime);
 	}
 }
 
 void DefaultScene::render(RenderDevice& renderDevice) {
-	for each (const auto& n in _nodes) {
+	for (const auto& n : _nodes) {
 		n.get()->render(renderDevice);
 	}
 	renderDevice.render();

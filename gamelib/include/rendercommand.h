@@ -9,7 +9,10 @@
 	\brief	This class stores the information to render a specific mesh
 			with a texture and a material.
 */
+#ifdef _WIN32
 class RENDERLIB_API RenderCommand {
+#endif
+class RenderCommand {
 
 public:
 	virtual void setMesh(Mesh);

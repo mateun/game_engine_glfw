@@ -4,18 +4,20 @@
 #include "stdafx.h"
 #include <stdlib.h>
 #include <GL/glew.h>
-#include <GLFW\glfw3.h>
+#include <GLFW/glfw3.h>
 #include <string>
 #include <fstream>
 #include <sstream>
 #include <iostream>
-#include <glm\vec2.hpp>
-#include <glm\mat4x4.hpp>
-#include <glm\gtc\matrix_transform.hpp>
-#include <glm\gtc\type_ptr.hpp>
+#include <glm/vec2.hpp>
+#include <glm/mat4x4.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include <vector>
 #include <map>
+#ifdef _WIN32
 #include <Windows.h>
+#endif
 
 enum GLShaderType {
 	VERTEX,
@@ -167,7 +169,7 @@ void initTriangle() {
 	};
 
 	std::vector<GLfloat> pos;
-	for each (GLfloat p in triPos) {
+	for (GLfloat p : triPos) {
 		pos.push_back(p);
 	}
 
@@ -176,7 +178,7 @@ void initTriangle() {
 		0,1,3
 	};
 	std::vector<GLuint> ind;
-	for each(GLuint i in triIndices) {
+	for (GLuint i : triIndices) {
 		ind.push_back(i);
 	}
 
@@ -236,7 +238,7 @@ Model importObjModel(const std::string& modelFileName) {
 	int idx = 0;
 	std::map<int, int> combos;
 	int positionIndex = faces.size();
-	for each(glm::vec3 f in faces) {
+	for (glm::vec3 f : faces) {
 		int v1 = f.x;
 		int v2 = f.y;
 		int v3 = f.z;
@@ -293,7 +295,7 @@ Model importObjModel(const std::string& modelFileName) {
 	// and store all data in its final destination.
 	// store the index in an ibo vector
 	idx = 0;
-	for each (glm::vec3 f in faces) {
+	for (glm::vec3 f : faces) {
 		int p1 = f.x;
 		int p2 = f.y;
 		int p3 = f.z;
@@ -331,7 +333,7 @@ Model importObjModel(const std::string& modelFileName) {
 	}
 
 	std::vector<GLfloat> positions_final_data;
-	for each(glm::vec3 p in positions_final) {
+	for (glm::vec3 p : positions_final) {
 		positions_final_data.push_back(p.x);
 		positions_final_data.push_back(p.y);
 		positions_final_data.push_back(p.z);
@@ -355,7 +357,7 @@ Model importObjModel(const std::string& modelFileName) {
 
 
 	std::vector<GLfloat> normals_final_data;
-	for each(glm::vec3 p in normals_final) {
+	for (glm::vec3 p : normals_final) {
 		normals_final_data.push_back(p.x);
 		normals_final_data.push_back(p.y);
 		normals_final_data.push_back(p.z);
@@ -445,7 +447,7 @@ glm::vec3 readFace(const std::string& line, int subIndex) {
 	std::vector<std::string> tokens = tokenize(line, ' ');
 	int idx = 1;
 	int idxz = 0;
-	for each (std::string s in tokens)
+	for (std::string s : tokens)
 	{
 		if (s[0] != 'f') {
 			std::vector<std::string> subs = tokenize(s, '/');
@@ -472,8 +474,8 @@ void keyCallBack(GLFWwindow* window, int key, int scancode, int action, int mods
 	}
 }
 
-
-int _tmain__(int argc, _TCHAR* argv[])
+#ifdef _WIN32
+int _tmain__(int argc, char* argv[])
 {
 	printf("GLFW test application starting up.\n");
 	glfwWindowHint(GLFW_REFRESH_RATE, GLFW_DONT_CARE);
@@ -579,3 +581,4 @@ int _tmain__(int argc, _TCHAR* argv[])
 	glfwTerminate();
 	return 0;
 }
+#endif

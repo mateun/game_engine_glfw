@@ -1,6 +1,8 @@
+#ifdef _WIN32
 #include "stdafx.h"
-#include "scenenode.h"
-#include "nodecomponent.h"
+#endif
+#include <scenenode.h>
+#include <nodecomponent.h>
 
 SceneNode::SceneNode() {
 

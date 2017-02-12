@@ -18,11 +18,23 @@ class RenderCommand;
 class RenderDevice {
 
 public:
-	RENDERLIB_API virtual void addRenderCommand(const RenderCommand renderCommand);	///< Adds a new RenderCommand to be drawn with the next render call
-	RENDERLIB_API virtual void deleteCommandBuffer();		///< Delete the contents of the command buffer completely
-	RENDERLIB_API virtual void render();	///< Renders all commands to the backbuffer
+	#ifdef _WIN32
+	RENDERLIB_API 
+	#endif
+	virtual void addRenderCommand(const RenderCommand renderCommand);	///< Adds a new RenderCommand to be drawn with the next render call
+	#ifdef _WIN32
+	RENDERLIB_API 
+	#endif
+	virtual void deleteCommandBuffer();		///< Delete the contents of the command buffer completely
+	#ifdef _WIN32
+	RENDERLIB_API 
+	#endif
+	virtual void render();	///< Renders all commands to the backbuffer
 
 protected:
-	RENDERLIB_API virtual void clearBackBuffer();
+	#ifdef _WIN32
+	RENDERLIB_API
+	#endif
+	virtual void clearBackBuffer();
 	std::vector<RenderCommand> _renderCommands;
 };

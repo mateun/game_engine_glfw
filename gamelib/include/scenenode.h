@@ -34,14 +34,32 @@ class  SceneNode {
 	REFLECTION_CODE(SceneNode)
 
 public:
-	RENDERLIB_API SceneNode();
+	#ifdef _WIN32 
+	RENDERLIB_API 
+	#endif 
+	SceneNode();
 	SceneNode(const SceneNode& other) = delete;
 	SceneNode& operator=(const SceneNode& other) = delete;
-	RENDERLIB_API virtual void addComponent(std::unique_ptr<NodeComponent> component);
-	RENDERLIB_API virtual void removeComponent(const std::string& componentId);
-	RENDERLIB_API virtual void update(GameTime& gameTime);
-	RENDERLIB_API virtual void render(RenderDevice& renderDevice) = 0;
-	RENDERLIB_API virtual NodeComponent& getComponent(const std::string& componentId);	///< Queries the node for a component with the given id
+	#ifdef _WIN32 
+	RENDERLIB_API 
+	#endif 
+	virtual void addComponent(std::unique_ptr<NodeComponent> component);
+	#ifdef _WIN32 
+	RENDERLIB_API 
+	#endif 
+	virtual void removeComponent(const std::string& componentId);
+	#ifdef _WIN32 
+	RENDERLIB_API 
+	#endif 
+	virtual void update(GameTime& gameTime);
+	#ifdef _WIN32 
+	RENDERLIB_API 
+	#endif 
+	virtual void render(RenderDevice& renderDevice) = 0;
+	#ifdef _WIN32 
+	RENDERLIB_API 
+	#endif 
+	virtual NodeComponent& getComponent(const std::string& componentId);	///< Queries the node for a component with the given id
 	
 private:
 	std::vector<std::unique_ptr<NodeComponent>> _components;

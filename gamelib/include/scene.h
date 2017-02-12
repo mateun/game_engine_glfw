@@ -38,8 +38,11 @@ class RenderDevice;
 
 	\endcode
  */
+#ifdef _WIN32
 class RENDERLIB_API Scene {
-	
+#else
+class Scene {
+#endif
 
 public:
 	virtual ~Scene();	///< Virtual destructor to allow for specific child destructor overrides
@@ -63,11 +66,26 @@ public:
 	DefaultScene() {}
 	DefaultScene(const DefaultScene& other) = delete;
 	 DefaultScene& operator=(DefaultScene& other) = delete;
-	RENDERLIB_API virtual ~DefaultScene();
-	RENDERLIB_API virtual void addNode(std::shared_ptr<SceneNode> node) override;
-	RENDERLIB_API virtual void removeNode(const std::string& nodeId) override;
-	RENDERLIB_API virtual void update() override;
-	RENDERLIB_API virtual void render(RenderDevice& renderDevice) override;
+	#ifdef _WIN32 
+	RENDERLIB_API 
+	#endif 
+	virtual ~DefaultScene();
+	#ifdef _WIN32 
+	RENDERLIB_API 
+	#endif 
+	virtual void addNode(std::shared_ptr<SceneNode> node) override;
+	#ifdef _WIN32 
+	RENDERLIB_API 
+	#endif 
+	virtual void removeNode(const std::string& nodeId) override;
+	#ifdef _WIN32 
+	RENDERLIB_API 
+	#endif 
+	virtual void update() override;
+	#ifdef _WIN32 
+	RENDERLIB_API 
+	#endif 
+	virtual void render(RenderDevice& renderDevice) override;
 
 private:
 	std::vector<std::shared_ptr<SceneNode>> _nodes;

@@ -12,8 +12,14 @@ class SceneNode;
 class  NodeComponent {
 
 public:
-	RENDERLIB_API virtual void execute() = 0;				///< This method is called each frame when the owning SceneNodes update method is run
-	RENDERLIB_API virtual std::shared_ptr<SceneNode> getSceneNode();	///< Get the parent SceneNode reference of this component
+	#ifdef _WIN32
+	RENDERLIB_API 
+	#endif 
+	virtual void execute() = 0;				///< This method is called each frame when the owning SceneNodes update method is run
+	#ifdef _WIN32 
+	RENDERLIB_API 
+	#endif 
+	virtual std::shared_ptr<SceneNode> getSceneNode();	///< Get the parent SceneNode reference of this component
 
 private:
 	std::shared_ptr<SceneNode> _parentNode;
