@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include <renderlib.h>
 #include <display.h>
+#include <imageimport.h>
 
 class MyPlayerControllerScript : public NodeComponent {
 	
@@ -29,6 +30,9 @@ public:
 };
 
 int main(int argc, char** args) {
+
+	PngImporter pngImporter;
+	pngImporter.importImage("G:/Archive/Pictures/2D/Textures/Lava_d.png");
 
 	RenderDevice rd;
 	DefaultScene scene;
