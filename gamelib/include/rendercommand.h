@@ -11,8 +11,9 @@
 */
 #ifdef _WIN32
 class RENDERLIB_API RenderCommand {
-#endif
+#else
 class RenderCommand {
+#endif
 
 public:
 	virtual void setMesh(Mesh);

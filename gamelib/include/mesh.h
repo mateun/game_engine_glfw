@@ -3,7 +3,8 @@
 
 #ifdef _WIN32
 class RENDERLIB_API Mesh {
-#endif
+#else
 class Mesh {
+#endif
 
 };

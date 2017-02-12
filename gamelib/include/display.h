@@ -12,8 +12,10 @@
 */
 #ifdef _WIN32
 class RENDERLIB_API Display {
-#endif
+#else
 class Display {
+#endif
+
 public:
 	Display(int w, int h, bool fullscreen);
 	virtual ~Display(); 
@@ -29,8 +31,9 @@ protected:
 
 #ifdef _WIN32
 class RENDERLIB_API GLFWDisplay : public Display {
-#endif
+#else
 class GLFWDisplay : public Display {
+#endif
 
 public:
 	GLFWDisplay(int w, int h, bool fullscreen);

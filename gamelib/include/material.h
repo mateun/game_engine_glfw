@@ -3,7 +3,8 @@
 
 #ifdef _WIN32
 class RENDERLIB_API Material {
-#endif
+#else
 class Material {
+#endif
 
 };

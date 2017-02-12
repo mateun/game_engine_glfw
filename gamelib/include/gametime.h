@@ -9,8 +9,9 @@
  */
 #ifdef _WIN32
 class RENDERLIB_API GameTime {
-#endif
+#else
 class GameTime {
+#endif
 
 public:
 	virtual long getTotalGameTime();		///< returns the time the game is running, in ms
