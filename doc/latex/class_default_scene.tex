@@ -1,0 +1,47 @@
+\hypertarget{class_default_scene}{}\section{Default\+Scene Class Reference}
+\label{class_default_scene}\index{Default\+Scene@{Default\+Scene}}
+
+
+The \hyperlink{class_default_scene}{Default\+Scene} is a simple \hyperlink{class_scene}{Scene} implementation based on a simple vector of Scene\+Nodes. No culling optimization is implemented.  
+
+
+
+
+{\ttfamily \#include $<$scene.\+h$>$}
+
+Inheritance diagram for Default\+Scene\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_default_scene}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_default_scene_a4b1d299c3da3a3e1b1bff200c2318817}\label{class_default_scene_a4b1d299c3da3a3e1b1bff200c2318817}} 
+{\bfseries Default\+Scene} (const \hyperlink{class_default_scene}{Default\+Scene} \&other)=delete
+\item 
+\mbox{\Hypertarget{class_default_scene_aee5e01122ca501009367babfffbd7a98}\label{class_default_scene_aee5e01122ca501009367babfffbd7a98}} 
+\hyperlink{class_default_scene}{Default\+Scene} \& {\bfseries operator=} (\hyperlink{class_default_scene}{Default\+Scene} \&other)=delete
+\item 
+\mbox{\Hypertarget{class_default_scene_a0de40100cc0236f656cdaf80d5ff477f}\label{class_default_scene_a0de40100cc0236f656cdaf80d5ff477f}} 
+virtual R\+E\+N\+D\+E\+R\+L\+I\+B\+\_\+\+A\+PI void \hyperlink{class_default_scene_a0de40100cc0236f656cdaf80d5ff477f}{add\+Node} (std\+::unique\+\_\+ptr$<$ \hyperlink{class_scene_node}{Scene\+Node} $>$ node) override
+\begin{DoxyCompactList}\small\item\em Adds a node to the scene graph. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_default_scene_a879ed798a8efe945ffb3624f5692e15b}\label{class_default_scene_a879ed798a8efe945ffb3624f5692e15b}} 
+virtual R\+E\+N\+D\+E\+R\+L\+I\+B\+\_\+\+A\+PI void \hyperlink{class_default_scene_a879ed798a8efe945ffb3624f5692e15b}{remove\+Node} (const std\+::string \&node\+Id) override
+\begin{DoxyCompactList}\small\item\em Removes a node from the scenegraph, destroying it effectively. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_default_scene_afb05291c5c6acae4c29abffe8ea30136}\label{class_default_scene_afb05291c5c6acae4c29abffe8ea30136}} 
+virtual R\+E\+N\+D\+E\+R\+L\+I\+B\+\_\+\+A\+PI void \hyperlink{class_default_scene_afb05291c5c6acae4c29abffe8ea30136}{update} () override
+\begin{DoxyCompactList}\small\item\em Updates the complete scene, gives all nodes a chance to update. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_default_scene_a403105049cb05f5f1144e029cd915297}\label{class_default_scene_a403105049cb05f5f1144e029cd915297}} 
+virtual R\+E\+N\+D\+E\+R\+L\+I\+B\+\_\+\+A\+PI void \hyperlink{class_default_scene_a403105049cb05f5f1144e029cd915297}{render} (\hyperlink{class_render_device}{Render\+Device} \&render\+Device) override
+\begin{DoxyCompactList}\small\item\em Renders the complete scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{class_default_scene}{Default\+Scene} is a simple \hyperlink{class_scene}{Scene} implementation based on a simple vector of Scene\+Nodes. No culling optimization is implemented. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/martin/\+Documents/\+Visual Studio 2013/\+Projects/glfw\+\_\+test/\+Render\+Lib/scene.\+h\item 
+C\+:/\+Users/martin/\+Documents/\+Visual Studio 2013/\+Projects/glfw\+\_\+test/\+Render\+Lib/scene.\+cpp\end{DoxyCompactItemize}

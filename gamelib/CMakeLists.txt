@@ -1,0 +1,16 @@
+include_directories(include 
+					../extlibs/glm/include 
+					../extlibs/glew/include 
+					../extlibs/glfw/include
+					)
+file(GLOB sources src/*.*)
+
+add_library(gamelib ${sources})
+
+target_link_libraries (gamelib
+    debug ${CMAKE_SOURCE_DIR}/extlibs/glfw/x64/Debug/glfw3dll.lib
+    optimized ${CMAKE_SOURCE_DIR}/extlibs/glfw/x64/Release/glfw3dll.lib)
+
+target_link_libraries (gamelib
+    debug ${CMAKE_SOURCE_DIR}/extlibs/glew/x64/lib/Debug/x64/glew32d.lib
+    optimized ${CMAKE_SOURCE_DIR}/extlibs/glew/x64/lib/Release/x64/glew32.lib)

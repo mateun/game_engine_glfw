@@ -1,0 +1,40 @@
+\hypertarget{class_render_device}{}\section{Render\+Device Class Reference}
+\label{class_render_device}\index{Render\+Device@{Render\+Device}}
+
+
+This class takes care of the low level rendering functionality.  
+
+
+
+
+{\ttfamily \#include $<$renderdevice.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_render_device_a832c832817e9cb66ef47b9a4d31fea7f}\label{class_render_device_a832c832817e9cb66ef47b9a4d31fea7f}} 
+virtual R\+E\+N\+D\+E\+R\+L\+I\+B\+\_\+\+A\+PI void \hyperlink{class_render_device_a832c832817e9cb66ef47b9a4d31fea7f}{add\+Render\+Command} (const \hyperlink{class_render_command}{Render\+Command} render\+Command)
+\begin{DoxyCompactList}\small\item\em Adds a new \hyperlink{class_render_command}{Render\+Command} to be drawn with the next render call. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_render_device_adbd93497804bf59ce6b7293ef2013474}\label{class_render_device_adbd93497804bf59ce6b7293ef2013474}} 
+virtual R\+E\+N\+D\+E\+R\+L\+I\+B\+\_\+\+A\+PI void \hyperlink{class_render_device_adbd93497804bf59ce6b7293ef2013474}{delete\+Command\+Buffer} ()
+\begin{DoxyCompactList}\small\item\em Delete the contents of the command buffer completely. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_render_device_ac84317cc89afb5ce04c0c40d6da2fd70}\label{class_render_device_ac84317cc89afb5ce04c0c40d6da2fd70}} 
+virtual R\+E\+N\+D\+E\+R\+L\+I\+B\+\_\+\+A\+PI void \hyperlink{class_render_device_ac84317cc89afb5ce04c0c40d6da2fd70}{clear\+Back\+Buffer} ()
+\begin{DoxyCompactList}\small\item\em Clears the backbuffer, normally calles at the start of the frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_render_device_ac31e81d0f1bc80cefbb3e1508969b762}\label{class_render_device_ac31e81d0f1bc80cefbb3e1508969b762}} 
+virtual R\+E\+N\+D\+E\+R\+L\+I\+B\+\_\+\+A\+PI void \hyperlink{class_render_device_ac31e81d0f1bc80cefbb3e1508969b762}{render} ()
+\begin{DoxyCompactList}\small\item\em Renders all commands to the backbuffer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_render_device_a62378cceca53ade7c57792c3bc12ef62}\label{class_render_device_a62378cceca53ade7c57792c3bc12ef62}} 
+virtual R\+E\+N\+D\+E\+R\+L\+I\+B\+\_\+\+A\+PI void \hyperlink{class_render_device_a62378cceca53ade7c57792c3bc12ef62}{flip\+Back\+Buffer} ()
+\begin{DoxyCompactList}\small\item\em Shows the contents of the backbuffer to the screen/window. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class takes care of the low level rendering functionality. 
+
+This class is responsible for rendering the submitted Render\+Commands as quickly as possible. During a frame, \hyperlink{class_render_command}{Render\+Command} objects are added to the \hyperlink{class_render_device}{Render\+Device}. When the command \char`\"{}render\char`\"{} is given, the device should do optimizations such as sorting by shaders, textures etc. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/martin/\+Documents/\+Visual Studio 2013/\+Projects/glfw\+\_\+test/\+Render\+Lib/renderdevice.\+h\item 
+C\+:/\+Users/martin/\+Documents/\+Visual Studio 2013/\+Projects/glfw\+\_\+test/\+Render\+Lib/renderdevice.\+cpp\end{DoxyCompactItemize}

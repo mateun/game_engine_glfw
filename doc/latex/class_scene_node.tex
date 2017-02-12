@@ -1,0 +1,48 @@
+\hypertarget{class_scene_node}{}\section{Scene\+Node Class Reference}
+\label{class_scene_node}\index{Scene\+Node@{Scene\+Node}}
+
+
+A \hyperlink{class_scene_node}{Scene\+Node} is the main building block of a scene and represents the \char`\"{}game objects\char`\"{} of a game. Each \hyperlink{class_scene_node}{Scene\+Node} has a location and rotation in the world, and can update and render itself during a frame of execution.  
+
+
+
+
+{\ttfamily \#include $<$scenenode.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_scene_node_ae4436f7c7d6ea817cfdce7e539f99e13}\label{class_scene_node_ae4436f7c7d6ea817cfdce7e539f99e13}} 
+{\bfseries Scene\+Node} (const \hyperlink{class_scene_node}{Scene\+Node} \&other)=delete
+\item 
+\mbox{\Hypertarget{class_scene_node_a726714ab2af70380202fe64bb4532e04}\label{class_scene_node_a726714ab2af70380202fe64bb4532e04}} 
+\hyperlink{class_scene_node}{Scene\+Node} \& {\bfseries operator=} (const \hyperlink{class_scene_node}{Scene\+Node} \&other)=delete
+\item 
+\mbox{\Hypertarget{class_scene_node_afed43bacb24221017fa6bb237bf1def1}\label{class_scene_node_afed43bacb24221017fa6bb237bf1def1}} 
+virtual R\+E\+N\+D\+E\+R\+L\+I\+B\+\_\+\+A\+PI void {\bfseries add\+Component} (std\+::unique\+\_\+ptr$<$ \hyperlink{class_node_component}{Node\+Component} $>$ component)
+\item 
+\mbox{\Hypertarget{class_scene_node_a501c1c791e70537487de1354cbf313d7}\label{class_scene_node_a501c1c791e70537487de1354cbf313d7}} 
+virtual R\+E\+N\+D\+E\+R\+L\+I\+B\+\_\+\+A\+PI void {\bfseries remove\+Component} (const std\+::string \&component\+Id)
+\item 
+\mbox{\Hypertarget{class_scene_node_a78106bd0e7daa1871dc0fb26a98c09a6}\label{class_scene_node_a78106bd0e7daa1871dc0fb26a98c09a6}} 
+virtual R\+E\+N\+D\+E\+R\+L\+I\+B\+\_\+\+A\+PI void {\bfseries update} (\hyperlink{class_game_time}{Game\+Time} \&game\+Time)
+\item 
+\mbox{\Hypertarget{class_scene_node_a25e06dbc543062880a82246e525a9725}\label{class_scene_node_a25e06dbc543062880a82246e525a9725}} 
+virtual R\+E\+N\+D\+E\+R\+L\+I\+B\+\_\+\+A\+PI void {\bfseries render} (\hyperlink{class_render_device}{Render\+Device} \&render\+Device)=0
+\item 
+\mbox{\Hypertarget{class_scene_node_a4a0b83e00a3edd492423970b44eb68cc}\label{class_scene_node_a4a0b83e00a3edd492423970b44eb68cc}} 
+virtual R\+E\+N\+D\+E\+R\+L\+I\+B\+\_\+\+A\+PI \hyperlink{class_node_component}{Node\+Component} \& \hyperlink{class_scene_node_a4a0b83e00a3edd492423970b44eb68cc}{get\+Component} (const std\+::string \&component\+Id)
+\begin{DoxyCompactList}\small\item\em Queries the node for a component with the given id. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A \hyperlink{class_scene_node}{Scene\+Node} is the main building block of a scene and represents the \char`\"{}game objects\char`\"{} of a game. Each \hyperlink{class_scene_node}{Scene\+Node} has a location and rotation in the world, and can update and render itself during a frame of execution. 
+
+Scene\+Nodes follow a modular approach in that most of its functionality is implemented through Node\+Components. A \hyperlink{class_node_component}{Node\+Component} can extend the functionality of a \hyperlink{class_scene_node}{Scene\+Node} in arbitrary ways, as its \char`\"{}execute\char`\"{} method is called once per frame, when the update method is called.
+
+Please note, that through Node\+Components it is not possible to influence the way an object is rendered. Possibly, this constraint will be lifted in the future. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/martin/\+Documents/\+Visual Studio 2013/\+Projects/glfw\+\_\+test/\+Render\+Lib/scenenode.\+h\item 
+C\+:/\+Users/martin/\+Documents/\+Visual Studio 2013/\+Projects/glfw\+\_\+test/\+Render\+Lib/scenenode.\+cpp\end{DoxyCompactItemize}

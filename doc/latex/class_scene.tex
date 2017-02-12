@@ -1,0 +1,62 @@
+\hypertarget{class_scene}{}\section{Scene Class Reference}
+\label{class_scene}\index{Scene@{Scene}}
+
+
+A \hyperlink{class_scene}{Scene} object is the heart of the rendering in the FB renderlib. It consists of Scene\+Nodes which are the foundational objects to be rendered and the user interacts with.  
+
+
+
+
+{\ttfamily \#include $<$scene.\+h$>$}
+
+Inheritance diagram for Scene\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_scene}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_scene_a3b8cec2e32546713915f8c6303c951f1}\label{class_scene_a3b8cec2e32546713915f8c6303c951f1}} 
+virtual \hyperlink{class_scene_a3b8cec2e32546713915f8c6303c951f1}{$\sim$\+Scene} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to allow for specific child destructor overrides. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_scene_adcf11ea10fab6c9371fd5bfbf3d08107}\label{class_scene_adcf11ea10fab6c9371fd5bfbf3d08107}} 
+virtual void \hyperlink{class_scene_adcf11ea10fab6c9371fd5bfbf3d08107}{add\+Node} (std\+::unique\+\_\+ptr$<$ \hyperlink{class_scene_node}{Scene\+Node} $>$ node)=0
+\begin{DoxyCompactList}\small\item\em Adds a node to the scene graph. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_scene_a54956adf423ce5469d3928ab26da987b}\label{class_scene_a54956adf423ce5469d3928ab26da987b}} 
+virtual void \hyperlink{class_scene_a54956adf423ce5469d3928ab26da987b}{remove\+Node} (const std\+::string \&node\+Id)=0
+\begin{DoxyCompactList}\small\item\em Removes a node from the scenegraph, destroying it effectively. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_scene_a7faff47f5c1b1ebc986f768c9b9732ec}\label{class_scene_a7faff47f5c1b1ebc986f768c9b9732ec}} 
+virtual void \hyperlink{class_scene_a7faff47f5c1b1ebc986f768c9b9732ec}{update} ()=0
+\begin{DoxyCompactList}\small\item\em Updates the complete scene, gives all nodes a chance to update. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_scene_a3eba6b8bf7e5be1ae0809f6f3ded3585}\label{class_scene_a3eba6b8bf7e5be1ae0809f6f3ded3585}} 
+virtual void \hyperlink{class_scene_a3eba6b8bf7e5be1ae0809f6f3ded3585}{render} (\hyperlink{class_render_device}{Render\+Device} \&render\+Device)=0
+\begin{DoxyCompactList}\small\item\em Renders the complete scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A \hyperlink{class_scene}{Scene} object is the heart of the rendering in the FB renderlib. It consists of Scene\+Nodes which are the foundational objects to be rendered and the user interacts with. 
+
+Normally, only one exists at any time, though technically, as long as you can afford it from a performance point of view, you could have multiple scenes in your program as well.
+
+Example usage of the scene\+: 
+\begin{DoxyCode}
+\textcolor{comment}{// Setup phase}
+\hyperlink{class_scene}{Scene} scene;
+scene.\hyperlink{class_scene_adcf11ea10fab6c9371fd5bfbf3d08107}{addNode}(playerNode);
+scene.\hyperlink{class_scene_adcf11ea10fab6c9371fd5bfbf3d08107}{addNode}(enemy1);
+scene.\hyperlink{class_scene_adcf11ea10fab6c9371fd5bfbf3d08107}{addNode}(enemy2);
+
+\textcolor{comment}{// in game loop}
+\textcolor{keywordflow}{while} (gameRunning) \{
+    scene.\hyperlink{class_scene_a7faff47f5c1b1ebc986f768c9b9732ec}{update}();
+    scene.\hyperlink{class_scene_a3eba6b8bf7e5be1ae0809f6f3ded3585}{render}(myRenderDevice);
+\}
+\end{DoxyCode}
+ 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/martin/\+Documents/\+Visual Studio 2013/\+Projects/glfw\+\_\+test/\+Render\+Lib/scene.\+h\item 
+C\+:/\+Users/martin/\+Documents/\+Visual Studio 2013/\+Projects/glfw\+\_\+test/\+Render\+Lib/scene.\+cpp\end{DoxyCompactItemize}
