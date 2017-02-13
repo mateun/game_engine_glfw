@@ -31,8 +31,9 @@ public:
 
 int main(int argc, char** args) {
 
-	PngImporter pngImporter;
-	pngImporter.importImage("G:/Archive/Pictures/2D/Textures/Lava_d.png");
+	MultiFormatImageImporter pngImporter;
+	std::unique_ptr<unsigned char> pixels = pngImporter.importImage("G:/Archive/Pictures/2D/Textures/Lava_d.png");
+	unsigned char * pr = pixels.get();
 
 	RenderDevice rd;
 	DefaultScene scene;

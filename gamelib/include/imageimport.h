@@ -2,6 +2,7 @@
 #include <renderlib_api.h>
 #include <string>
 #include <png.h>
+#include <memory>
 
 #ifdef _WIN32
 class RENDERLIB_API ImageImporter
@@ -11,17 +12,17 @@ class ImageImporter
 {
 
 public:
-	virtual void importImage(const std::string& imageFileName) = 0;
+	virtual std::unique_ptr<unsigned char> importImage(const std::string& imageFileName) = 0;
 
 };
 
 #ifdef _WIN32
-class RENDERLIB_API PngImporter : public ImageImporter
+class RENDERLIB_API MultiFormatImageImporter : public ImageImporter
 #else
-class PngImporter : public ImageImporter
+class MultiFormatImageImporter : public ImageImporter
 #endif
 {
 
 public:
-	virtual void importImage(const std::string& imageFileName) override;
+	virtual std::unique_ptr<unsigned char> importImage(const std::string& imageFileName) override;
 };

@@ -3,6 +3,7 @@ include_directories(include
 					../extlibs/glew/include 
 					../extlibs/glfw/include
 					../extlibs/libpng/include
+					../extlibs/freeimage/include
 					)
 file(GLOB sources src/*.*)
 
@@ -20,3 +21,6 @@ target_link_libraries (gamelib
 
 target_link_libraries (gamelib
     ${CMAKE_SOURCE_DIR}/extlibs/libpng/x64/libpng16.lib)
+
+target_link_libraries (gamelib
+    ${CMAKE_SOURCE_DIR}/extlibs/freeimage/x64/freeimage.lib)
