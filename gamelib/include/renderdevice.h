@@ -1,5 +1,6 @@
 #include "renderlib_api.h"
 #include <vector>
+#include <memory>
 
 class RenderCommand;
 
@@ -18,10 +19,14 @@ class RenderCommand;
 class RenderDevice {
 
 public:
+	#ifdef _WIN32 
+	RENDERLIB_API
+	#endif 
+	RenderDevice();
 	#ifdef _WIN32
 	RENDERLIB_API 
 	#endif
-	virtual void addRenderCommand(const RenderCommand renderCommand);	///< Adds a new RenderCommand to be drawn with the next render call
+	virtual void addRenderCommand(std::unique_ptr<RenderCommand> renderCommand);	///< Adds a new RenderCommand to be drawn with the next render call
 	#ifdef _WIN32
 	RENDERLIB_API 
 	#endif
@@ -30,11 +35,12 @@ public:
 	RENDERLIB_API 
 	#endif
 	virtual void render();	///< Renders all commands to the backbuffer
-
+	RenderDevice(const RenderDevice& other) = delete;
+	RenderDevice& operator=(const RenderDevice& other) = delete;
 protected:
 	#ifdef _WIN32
 	RENDERLIB_API
 	#endif
 	virtual void clearBackBuffer();
-	std::vector<RenderCommand> _renderCommands;
+	std::vector<std::unique_ptr<RenderCommand>> _renderCommands;
 };

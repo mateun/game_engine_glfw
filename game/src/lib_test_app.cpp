@@ -1,13 +1,25 @@
 #include "stdafx.h"
 #include <renderlib.h>
-#include <display.h>
-#include <imageimport.h>
 
 class MyPlayerControllerScript : public NodeComponent {
 	
 public:
 	virtual void execute() {
 		//printf("in exec. of PlayerControllerScript\n");
+	}
+};
+
+class TriRenderCommand : public RenderCommand {
+
+public:
+	TriRenderCommand() {
+
+	}
+	virtual void execute() {
+
+
+		glDrawArrays(GL_POINTS, 0, 1);
+
 	}
 };
 

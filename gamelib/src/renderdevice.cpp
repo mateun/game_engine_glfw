@@ -3,8 +3,12 @@
 #include "rendercommand.h"
 #include "GL/glew.h"
 
-void RenderDevice::addRenderCommand(RenderCommand renderCommand) {
-	_renderCommands.push_back(renderCommand);
+RenderDevice::RenderDevice() {
+
+}
+
+void RenderDevice::addRenderCommand(std::unique_ptr<RenderCommand> renderCommand) {
+	_renderCommands.push_back(std::move(renderCommand));
 }
 
 void RenderDevice::deleteCommandBuffer() {
@@ -22,6 +26,9 @@ void RenderDevice::clearBackBuffer() {
 
 void RenderDevice::render() {
 	clearBackBuffer();
+	for (const auto& rc : _renderCommands) {
+		rc->execute();
+	}
 
 }
 

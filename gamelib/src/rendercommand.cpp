@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "rendercommand.h"
 
+RenderCommand::RenderCommand() {}
 
 void RenderCommand::setMesh(Mesh m) {
 	_mesh = m;
@@ -24,4 +25,12 @@ Material RenderCommand::getMaterial() {
 
 Texture RenderCommand::getTexture() {
 	return _texture;
+}
+
+Shader RenderCommand::getShader() {
+	return _shader;
+}
+
+void RenderCommand::setShader(Shader s) {
+	_shader = s;
 }
