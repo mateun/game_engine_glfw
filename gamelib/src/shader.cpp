@@ -48,6 +48,8 @@ void Shader::createProgram(const std::string& vertexFile, const std::string& pix
 		printf("error linking the program.\n");
 		throw std::runtime_error("error linking the program");
 	}
+	GLenum err = glGetError();
+	if (err != 0) printf("gl error: %d", err);
 }
 
 Shader::Shader(const std::string& vertexFile, const std::string& pixelFile) {

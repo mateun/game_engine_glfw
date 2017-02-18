@@ -479,12 +479,12 @@ int _tmain__(int argc, char* argv[])
 {
 	printf("GLFW test application starting up.\n");
 	glfwWindowHint(GLFW_REFRESH_RATE, GLFW_DONT_CARE);
-	GLFWwindow* window = initWindow(true);
+	GLFWwindow* window = initWindow(false);
 
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glEnable(GL_CULL_FACE);
-	glEnable(GL_DEPTH_TEST);
-	glClearColor(0, 0.0, 0.0, 1);
+	//glEnable(GL_DEPTH_TEST);
+	glClearColor(0, 1.0, 1.0, 1);
 	printGLError(checkGLError());
 	initTriangle();
 	printGLError(checkGLError());
@@ -492,6 +492,7 @@ int _tmain__(int argc, char* argv[])
 	// compile our shader program
 	GLuint shaderProg = createShader("vshader.glsl", "pshader.glsl");
 	printGLError(checkGLError());
+
 
 	// print out version number
 	printf("GL Version: %s\n", glGetString(GL_VERSION));
@@ -501,82 +502,100 @@ int _tmain__(int argc, char* argv[])
 	printf("GL version maj.min: %d.%d\n", maj, min);
 
 	// import the model
-	Model model = importObjModel("house.obj");
+	//Model model = importObjModel("house.obj");
 
 	// basic transformation matrices
-	glm::mat4 matProj = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.f);
+	/*glm::mat4 matProj = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.f);
 	
 	float rotZ = 0;
-
 
 	GLint locProj = glGetUniformLocation(shaderProg, "proj");
 	GLint locMV = glGetUniformLocation(shaderProg, "mv");
 	GLint locBaseCol = glGetUniformLocation(shaderProg, "baseCol");
 	glUseProgram(shaderProg);
-	glUniformMatrix4fv(locProj, 1, GL_FALSE, glm::value_ptr(matProj));
+	glUniformMatrix4fv(locProj, 1, GL_FALSE, glm::value_ptr(matProj));*/
 
 	long frameEnd = 0;
 
 	glfwSetKeyCallback(window, keyCallBack);
 
-	// main loop
+	glPointSize(20);
+	GLuint simpleShaderProg = createShader("simplevs.glsl", "simpleps.glsl");
+	printGLError(checkGLError());
+
+	GLfloat bgcol[] = { 0, 0, 0, 1 };
+
 	while (!glfwWindowShouldClose(window) && shouldRun) {
-		long now = GetTickCount();
-		long duration = now - frameEnd;
+		//glClear(GL_COLOR_BUFFER_BIT );
+		glClearBufferfv(GL_COLOR, 0, bgcol);
+		//glClearBufferfv(GL_DEPTH, 0, bgcol);
 
-		printf("duration: %d\n", duration);
+		glBindVertexArray(vaoTriangle);
+		glUseProgram(simpleShaderProg);
+		glDrawArrays(GL_POINTS, 0, 1);
 
-		// wait for 16ms
-		int ctr = 0;
-		if (duration < 15) {
-			while (duration < 15) {
-				// logic
-				ctr++;
-				rotZ += 0.001f * duration;
-				Sleep(1);
-				duration = GetTickCount() - frameEnd;
-				printf("duration after loop: %d ctr: %d\n", duration, ctr);
-			}
-		}
-		else {
-			rotZ += 0.001f * duration;
-		}
-
-		rotZ += 0.01f;
-
-		printf("duration after wait: %d\n", duration);
-
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-				// model transformation
-		float one = 1;
-		glm::mat4 matMV = glm::mat4x4(one);
-		//matMV = glm::translate(matMV, glm::vec3(0, 0, -8));
-		////matMV = glm::rotate(matMV, rotZ, glm::vec3(0, 0, 1));
-		//
-		//matMV = glm::rotate(matMV, glm::radians(rotZ * 10.1f), glm::vec3(0, 1, 0));
-		//matMV = glm::scale(matMV, glm::vec3(0.2, 0.2, 0.2));
-
-		transformModel(glm::vec3(0, 0, -7), glm::vec3(0, 1, 0), glm::radians(rotZ * 20), locMV);
-		glUniform4fv(locBaseCol, 1, glm::value_ptr(glm::vec4(0.7, 0.999, 0.8, 1)));
-
-		glBindVertexArray(model.vao);
-		//glBindVertexArray(vaoTriangle);
-		printGLError(checkGLError());
-		glDrawElements(GL_TRIANGLES, model.numIndices, GL_UNSIGNED_INT, 0);
-
-		// Draw at other location with other rotation
-		transformModel(glm::vec3(-1.5, -1, -6), glm::vec3(0.7, 0.2, 1), glm::radians(rotZ * 40), locMV);
-		glUniform4fv(locBaseCol, 1, glm::value_ptr(glm::vec4(0.1, 0.7, 0.8, 1)));
-		glDrawElements(GL_TRIANGLES, model.numIndices, GL_UNSIGNED_INT, 0);
-
-		printGLError(checkGLError());
 		glfwSwapBuffers(window);
 		glfwPollEvents();
-		frameEnd = GetTickCount();
-
-
 	}
+
+	// main loop
+	//while (!glfwWindowShouldClose(window) && shouldRun) {
+	//	long now = GetTickCount();
+	//	long duration = now - frameEnd;
+
+	//	printf("duration: %d\n", duration);
+
+	//	// wait for 16ms
+	//	int ctr = 0;
+	//	if (duration < 15) {
+	//		while (duration < 15) {
+	//			// logic
+	//			ctr++;
+	//			rotZ += 0.001f * duration;
+	//			Sleep(1);
+	//			duration = GetTickCount() - frameEnd;
+	//			printf("duration after loop: %d ctr: %d\n", duration, ctr);
+	//		}
+	//	}
+	//	else {
+	//		rotZ += 0.001f * duration;
+	//	}
+
+	//	rotZ += 0.01f;
+
+	//	printf("duration after wait: %d\n", duration);
+
+	//	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	//			// model transformation
+	//	float one = 1;
+	//	glm::mat4 matMV = glm::mat4x4(one);
+	//	//matMV = glm::translate(matMV, glm::vec3(0, 0, -8));
+	//	////matMV = glm::rotate(matMV, rotZ, glm::vec3(0, 0, 1));
+	//	//
+	//	//matMV = glm::rotate(matMV, glm::radians(rotZ * 10.1f), glm::vec3(0, 1, 0));
+	//	//matMV = glm::scale(matMV, glm::vec3(0.2, 0.2, 0.2));
+
+	//	transformModel(glm::vec3(0, 0, -7), glm::vec3(0, 1, 0), glm::radians(rotZ * 20), locMV);
+	//	glUniform4fv(locBaseCol, 1, glm::value_ptr(glm::vec4(0.7, 0.999, 0.8, 1)));
+
+	//	glBindVertexArray(model.vao);
+	//	//glBindVertexArray(vaoTriangle);
+	//	printGLError(checkGLError());
+	//	glDrawElements(GL_TRIANGLES, model.numIndices, GL_UNSIGNED_INT, 0);
+
+	//	// Draw at other location with other rotation
+	//	transformModel(glm::vec3(-1.5, -1, -6), glm::vec3(0.7, 0.2, 1), glm::radians(rotZ * 40), locMV);
+	//	glUniform4fv(locBaseCol, 1, glm::value_ptr(glm::vec4(0.1, 0.7, 0.8, 1)));
+	//	glDrawElements(GL_TRIANGLES, model.numIndices, GL_UNSIGNED_INT, 0);
+
+	//	printGLError(checkGLError());
+	//	glfwSwapBuffers(window);
+	//	glfwPollEvents();
+	//	frameEnd = GetTickCount();
+
+
+	//}
 
 	glfwTerminate();
 	return 0;

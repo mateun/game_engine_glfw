@@ -26,7 +26,7 @@ public:
 	#ifdef _WIN32
 	RENDERLIB_API 
 	#endif
-	virtual void addRenderCommand(std::unique_ptr<RenderCommand> renderCommand);	///< Adds a new RenderCommand to be drawn with the next render call
+	virtual void addRenderCommand(std::shared_ptr<RenderCommand> renderCommand);	///< Adds a new RenderCommand to be drawn with the next render call
 	#ifdef _WIN32
 	RENDERLIB_API 
 	#endif
@@ -42,5 +42,5 @@ protected:
 	RENDERLIB_API
 	#endif
 	virtual void clearBackBuffer();
-	std::vector<std::unique_ptr<RenderCommand>> _renderCommands;
+	std::vector<std::shared_ptr<RenderCommand>> _renderCommands;
 };

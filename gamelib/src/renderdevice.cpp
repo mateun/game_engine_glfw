@@ -4,10 +4,11 @@
 #include "GL/glew.h"
 
 RenderDevice::RenderDevice() {
-
+	glEnable(GL_CULL_FACE);
+	glEnable(GL_DEPTH_TEST);
 }
 
-void RenderDevice::addRenderCommand(std::unique_ptr<RenderCommand> renderCommand) {
+void RenderDevice::addRenderCommand(std::shared_ptr<RenderCommand> renderCommand) {
 	_renderCommands.push_back(std::move(renderCommand));
 }
 
@@ -17,10 +18,11 @@ void RenderDevice::deleteCommandBuffer() {
 
 void RenderDevice::clearBackBuffer() {
 	// TODO remove these one-time-startup thingies...
-	glEnable(GL_CULL_FACE);
-	glEnable(GL_DEPTH_TEST);
-	const GLfloat bgcol[] = { 1, 0, .0, 1 };
+	
+	const GLfloat bgcol[] = { 0, 0, .0, 1 };
+	const GLfloat dval = 1;
 	glClearBufferfv(GL_COLOR, 0, bgcol);
+	glClearBufferfv(GL_DEPTH, 0, &dval);
 	
 }
 
