@@ -22,7 +22,7 @@ void DefaultScene::removeNode(const std::string& id) {
 
 void DefaultScene::update() {
 	for (const auto& n : _nodes) {
-		n.get()->update(_gameTime);
+		n->update(_gameTime);
 	}
 }
 
