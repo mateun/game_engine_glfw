@@ -28,7 +28,7 @@ void DefaultScene::update() {
 
 void DefaultScene::render(RenderDevice& renderDevice) {
 	for (const auto& n : _nodes) {
-		n.get()->render(renderDevice);
+		n->render(renderDevice);
 	}
 	renderDevice.render();
 }
