@@ -38,8 +38,6 @@ int main(int argc, char** args) {
 	RenderDevice rd;
 	DefaultScene scene;
 	std::shared_ptr<GameObject> go = std::make_shared<GameObject>();
-	printf("refcount of go: %d\n", go.use_count());
-	printf("typeName of sceneNode: %s\n", go->getTypeName());
 	go->addComponent(std::move(std::make_unique<MyPlayerControllerScript>()));
 	scene.addNode(go);
 
