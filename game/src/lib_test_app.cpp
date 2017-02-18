@@ -7,7 +7,7 @@ class MyPlayerControllerScript : public NodeComponent {
 	
 public:
 	virtual void execute() {
-		printf("in exec. of PlayerControllerScript\n");
+		//printf("in exec. of PlayerControllerScript\n");
 	}
 };
 
@@ -17,10 +17,10 @@ public:
 	GameObject() {}
 	virtual  void update(GameTime& gameTime) {
 		SceneNode::update(gameTime);
-		printf("in update of GameObject\n");
+		//printf("in update of GameObject\n");
 	}
 	virtual void render(RenderDevice& rd) {
-		printf("render in node\n");
+		//printf("render in node\n");
 	}
 
 	void specialFunc() {
@@ -42,9 +42,6 @@ int main(int argc, char** args) {
 	printf("typeName of sceneNode: %s\n", go->getTypeName());
 	go->addComponent(std::move(std::make_unique<MyPlayerControllerScript>()));
 	scene.addNode(go);
-
-	printf("is go empty?: %p\n", go.get());
-	printf("refcount of go: %d\n", go.use_count());
 
 	GLFWDisplay display(800, 600, false);
 

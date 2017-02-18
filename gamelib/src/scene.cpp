@@ -27,9 +27,14 @@ void DefaultScene::update() {
 }
 
 void DefaultScene::render(RenderDevice& renderDevice) {
+	// Rendering of the nodes means they add specific rendercommands
+	// to the renderDevice.
 	for (const auto& n : _nodes) {
 		n->render(renderDevice);
 	}
+
+	// After all renderCommands have been collected, the 
+	// renderDevice is asked to do the physical rendering.
 	renderDevice.render();
 }
 

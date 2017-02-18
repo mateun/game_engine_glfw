@@ -2,6 +2,8 @@
 #include <GL/glew.h>
 #include "display.h"
 #include <stdexcept>
+#include <string>
+#include <iostream>
 
 Display::Display(int w, int h, bool fullscreen) : _screenWidth(w), _screenHeight(h) {
 
@@ -33,6 +35,9 @@ GLFWDisplay::GLFWDisplay(int w, int h, bool fullscreen) : Display(w, h, fullscre
 	if (GLEW_OK != err) {
 		throw std::runtime_error("failed to init GLEW");
 	}
+
+	std::cout << "GL_VERSION: " << reinterpret_cast<const char*>(glGetString(GL_VERSION)) << std::endl;;
+
 
 }
 
