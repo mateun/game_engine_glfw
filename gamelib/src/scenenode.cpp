@@ -19,7 +19,7 @@ void SceneNode::removeComponent(const std::string& id) {
 
 void SceneNode::update(GameTime& gameTime) {
 	for (const auto& c : _components) {
-		c.get()->execute();
+		c->execute();
 	}
 }
 
