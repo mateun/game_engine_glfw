@@ -4,6 +4,10 @@
 #include <png.h>
 #include <memory>
 
+class FBImage;
+
+
+
 #ifdef _WIN32
 class RENDERLIB_API ImageImporter
 #else
@@ -12,7 +16,7 @@ class ImageImporter
 {
 
 public:
-	virtual std::unique_ptr<unsigned char> importImage(const std::string& imageFileName) = 0;
+	virtual std::unique_ptr<FBImage> importImage(const std::string& imageFileName) = 0;
 
 };
 
@@ -24,5 +28,5 @@ class MultiFormatImageImporter : public ImageImporter
 {
 
 public:
-	virtual std::unique_ptr<unsigned char> importImage(const std::string& imageFileName) override;
+	virtual std::unique_ptr<FBImage> importImage(const std::string& imageFileName) override;
 };

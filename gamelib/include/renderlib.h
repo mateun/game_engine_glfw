@@ -9,3 +9,4 @@
 #include "shader.h"
 #include "display.h"
 #include "imageimport.h"
+#include "image.h"

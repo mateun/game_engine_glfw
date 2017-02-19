@@ -110,15 +110,19 @@ public:
 				data[x+1] = 0xab;
 				data[x+2] = 0x00;
 				data[x+3] = 0xff;
-			
 		}
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 16, 16, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+
+		MultiFormatImageImporter pngImporter;
+		std::unique_ptr<FBImage> image = pngImporter.importImage("G:/Archive/Pictures/2D/Textures/Pixelart/ChibbyMalePixelChar512.png");
+		
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image->getWidth(), image->getHeight(), 0, GL_BGRA, GL_UNSIGNED_BYTE, image->getPixels());
 		err = glGetError();
 		if (err != 0) {
 			printf("03 gl error: %d: %s", err, gluErrorString(err));
 		}
 
 		delete [] data;
+
 
 	}
 
@@ -170,9 +174,8 @@ private:
 
 int main(int argc, char** args) {
 	MultiFormatImageImporter pngImporter;
-	std::unique_ptr<unsigned char> pixels = pngImporter.importImage("G:/Archive/Pictures/2D/Textures/Lava_d.png");
-	unsigned char * pr = pixels.get();
-
+	std::unique_ptr<FBImage> img = pngImporter.importImage("G:/Archive/Pictures/2D/Textures/Lava_d.png");
+	
 	GLFWDisplay display(800, 600, false);
 
 	RenderDevice rd;
