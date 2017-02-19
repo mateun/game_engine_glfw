@@ -11,8 +11,6 @@ std::unique_ptr<unsigned char> MultiFormatImageImporter::importImage(const std::
 
 	image = FreeImage_ConvertTo32Bits(image);
 
-	unsigned char* c = new unsigned char(10);
-
 	std::unique_ptr<BYTE> p(FreeImage_GetBits(image));
 	return std::move(p);
 	
